@@ -63,7 +63,7 @@ test('Verify Subscription in Cart page', async ({ page }) => {
 
 
 
-test.only('test', async ({ page }) => {
+test('test', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
     await page.getByRole('link', { name: ' Products' }).click();
