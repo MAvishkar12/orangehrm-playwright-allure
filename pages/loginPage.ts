@@ -20,7 +20,9 @@ export class LoginPage {
     }
 
     async pageGoTo() {
-        await this.page.goto('https://automationexercise.com/');
+        await this.page.goto('https://automationexercise.com/',{
+            waitUntil:'domcontentloaded'
+        });
     }
 
     async login(email: string, password: string) {

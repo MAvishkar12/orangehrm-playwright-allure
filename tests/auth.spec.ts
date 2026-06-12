@@ -1,5 +1,6 @@
 import { test, expect } from "@playwright/test";
 import { LoginPage } from '../pages/LoginPage';
+import { UserData ,IncorrectNewUser } from "../utils";
 
 test("Login User with correct email and password", async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -7,13 +8,12 @@ test("Login User with correct email and password", async ({ page }) => {
     await loginPage.pageGoTo();
 
     await loginPage.login(
-        'Admin123456@gmail.com',
-        'Admin@123'
+        UserData.email,
+        UserData.password
     );
     await expect(page.getByRole('link', { name: 'Logout' }))
         .toBeVisible()
 })
-
 
 test('Login User with incorrect email and password', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -21,15 +21,13 @@ test('Login User with incorrect email and password', async ({ page }) => {
     await loginPage.pageGoTo();
 
     await loginPage.login(
-        'Admin123@gmail.com',
-        'Admin@123'
+        IncorrectNewUser.email,
+        IncorrectNewUser.password
     );
     await expect(page.getByText('Your email or password is incorrect!')).toBeVisible()
     await page.waitForTimeout(3000)
 
 })
-
-
 
 test('Register User with existing email', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -69,8 +67,8 @@ test(' Logout User', async ({ page }) => {
     await loginPage.pageGoTo();
 
     await loginPage.login(
-        'Admin123456@gmail.com',
-        'Admin@123'
+        UserData.email,
+        UserData.password
     );
     await expect(page.getByRole('link', { name: 'Logout' }))
         .toBeVisible()

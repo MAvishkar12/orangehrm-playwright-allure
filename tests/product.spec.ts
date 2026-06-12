@@ -12,6 +12,28 @@ test("Verify All Products and product detail page", async ({ page }) => {
     await expect(page.getByText('Rs. 500')).toBeVisible()
 })
 
+
+test(' Verify Subscription in home page', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.pageGoTo();
+    await page.getByRole('textbox', { name: 'Your email address' }).fill('Admin123456@gmail.com');
+    await page.locator('#subscribe').click();
+    await expect(page.getByText('You have been successfully')).toBeVisible()
+
+})
+
+
+
+test('Verify Subscription in Cart page', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.pageGoTo();
+    await page.getByRole('link', { name: ' Cart' }).click();
+    await page.getByRole('textbox', { name: 'Your email address' }).fill('Admin123456@gmail.com');
+    await page.locator('#subscribe').click();
+    await expect(page.getByText('You have been successfully')).toBeVisible()
+});
+
+
 test(' Search Product', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
@@ -38,32 +60,7 @@ test(' Search Product', async ({ page }) => {
 
 })
 
-
-test(' Verify Subscription in home page', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.pageGoTo();
-    await page.getByRole('textbox', { name: 'Your email address' }).fill('Admin123456@gmail.com');
-    await page.locator('#subscribe').click();
-    await expect(page.getByText('You have been successfully')).toBeVisible()
-
-})
-
-
-
-test('Verify Subscription in Cart page', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    await loginPage.pageGoTo();
-    await page.getByRole('link', { name: ' Cart' }).click();
-    await page.getByRole('textbox', { name: 'Your email address' }).fill('Admin123456@gmail.com');
-    await page.locator('#subscribe').click();
-    await expect(page.getByText('You have been successfully')).toBeVisible()
-});
-
-
-
-
-
-test('test', async ({ page }) => {
+test('Count Product Items', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
     await page.getByRole('link', { name: ' Products' }).click();
@@ -98,7 +95,7 @@ test('test', async ({ page }) => {
     const cartRows = page.locator('#cart_info_table tbody tr')
     await expect(cartRows).toHaveCount(2)
     let totalBill: number = 0
-    
+
     for (let i = 0; i < await cartRows.count(); i++) {
 
         const price = await page.locator('#cart_info_table tbody tr  .cart_total .cart_total_price').nth(i).textContent()
@@ -106,7 +103,7 @@ test('test', async ({ page }) => {
         console.log(OrignalPrice)
         totalBill += OrignalPrice;
     }
-     expect(totalBill).toEqual(TotalSum)
+    expect(totalBill).toEqual(TotalSum)
     await page.waitForTimeout(1000)
 
 });
