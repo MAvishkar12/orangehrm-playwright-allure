@@ -1,7 +1,7 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from '../pages/LoginPage';
-import { UserData ,IncorrectNewUser } from "../utils";
 
+import { UserData ,IncorrectNewUser } from "../utils";
+import { LoginPage } from "../pages/LoginPage";
 test("Login User with correct email and password", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
