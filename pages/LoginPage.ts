@@ -23,7 +23,7 @@ export class LoginPage {
         await this.page.goto('https://automationexercise.com/',{
             waitUntil:'domcontentloaded'
         });
-    }
+    } 
 
     async login(email: string, password: string) {
         await this.loginText.click();
