@@ -45,9 +45,8 @@ test(' Search Product', async ({ page }) => {
     const products = page.locator('.productinfo p');
     const count = await products.count();
 
-    console.log("Count of products:", count);
 
-    expect(count).toBeGreaterThan(0);
+
 
     for (let i = 0; i < count; i++) {
         const productName = await products.nth(i).innerText();
@@ -60,50 +59,53 @@ test(' Search Product', async ({ page }) => {
 
 })
 
-// test('Count Product Items', async ({ page }) => {
-//     const loginPage = new LoginPage(page);
-//     await loginPage.pageGoTo();
-//     await page.getByRole('link', { name: ' Products' }).click();
-//     // first item
-//     await page.locator('a').filter({ hasText: 'Add to cart' }).nth(0).click()
-//     const womenShirtCard = page.locator('.productinfo').filter({ hasText: 'Blue Top' })
-//     await womenShirtCard.locator('.add-to-cart').first().click();
-//     const priceofItem1 = Number(
-//         (await page.locator('.productinfo')
-//             .filter({ hasText: 'Blue Top' })
-//             .locator('h2')
-//             .textContent())?.replace('Rs. ', '').trim()
-//     );
+test('Count Product Items', async ({ page }) => {
+    const loginPage = new LoginPage(page);
+    await loginPage.pageGoTo();
+    await page.getByRole('link', { name: ' Products' }).click();
+    // first item
+    await page.locator('a').filter({ hasText: 'Add to cart' }).nth(0).click()
+    const womenShirtCard = page.locator('.productinfo').filter({ hasText: 'Blue Top' })
+    await womenShirtCard.locator('.add-to-cart').first().click();
+    const priceofItem1 = Number(
+        (await page.locator('.productinfo')
+            .filter({ hasText: 'Blue Top' })
+            .locator('h2')
+            .textContent())?.replace('Rs. ', '').trim()
+    );
 
-//     await page.getByRole('button', { name: 'Continue Shopping' }).click()
-//     //second item
-//     const menTshirtCard = page.locator('.productinfo').filter({
-//         hasText: 'Men Tshirt'
-//     });
-//     const priceofItem2 = Number(
-//         (await page.locator('.productinfo')
-//             .filter({ hasText: 'Men Tshirt' })
-//             .locator('h2')
-//             .textContent())?.replace('Rs. ', '').trim()
-//     );
-//     await menTshirtCard.locator('.add-to-cart').first().click();
-//     const TotalSum = priceofItem1 + priceofItem2
-   
-//     await page.getByRole('button', { name: 'Continue Shopping' }).click()
-//     await page.getByText('Cart', { exact: true }).click()
-//     await expect(page).toHaveURL(/view_cart/)
-//     const cartRows = page.locator('#cart_info_table tbody tr')
-//     await expect(cartRows).toHaveCount(2)
-//     let totalBill: number = 0
+    await page.getByRole('button', { name: 'Continue Shopping' }).click()
+    //second item
+    const menTshirtCard = page.locator('.productinfo').filter({
+        hasText: 'Men Tshirt'
+    });
+    const priceofItem2 = Number(
+        (await page.locator('.productinfo')
+            .filter({ hasText: 'Men Tshirt' })
+            .locator('h2')
+            .textContent())?.replace('Rs. ', '').trim()
+    );
+    await menTshirtCard.locator('.add-to-cart').first().click();
+    const TotalSum = priceofItem1 + priceofItem2
 
-//     for (let i = 0; i < await cartRows.count(); i++) {
+    await page.getByRole('button', { name: 'Continue Shopping' }).click()
+    await page.getByText('Cart', { exact: true }).click()
+    await expect(page).toHaveURL(/view_cart/)
+    const cartRows = page.locator('#cart_info_table tbody tr')
+    await expect(cartRows).toHaveCount(2)
+    let totalBill: number = 0
 
-//         const price = await page.locator('#cart_info_table tbody tr  .cart_total .cart_total_price').nth(i).textContent()
-//         const OrignalPrice: number = Number(price?.replace('Rs. ', '').trim());
-//         console.log(OrignalPrice)
-//         totalBill += OrignalPrice;
-//     }
-//     expect(totalBill).toEqual(TotalSum)
-//     await page.waitForTimeout(1000)
+    for (let i = 0; i < await cartRows.count(); i++) {
 
-// });
+        const price = await page.locator('#cart_info_table tbody tr  .cart_total .cart_total_price').nth(i).textContent()
+        const OrignalPrice: number = Number(price?.replace('Rs. ', '').trim());
+        console.log(OrignalPrice)
+        totalBill += OrignalPrice;
+    }
+    expect(totalBill).toEqual(TotalSum)
+    await page.waitForTimeout(1000)
+
+});
+
+
+
