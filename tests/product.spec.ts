@@ -88,7 +88,7 @@ test('Count Product Items', async ({ page }) => {
     );
     await menTshirtCard.locator('.add-to-cart').first().click();
     const TotalSum = priceofItem1 + priceofItem2
-
+   
     await page.getByRole('button', { name: 'Continue Shopping' }).click()
     await page.getByText('Cart', { exact: true }).click()
     await expect(page).toHaveURL(/view_cart/)
