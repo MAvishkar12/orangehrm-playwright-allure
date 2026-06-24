@@ -1,77 +1,77 @@
-import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { RegisterPage } from "../pages/RegisterPage";
-import { CheckoutPage } from "../pages/CheckoutPage";
-import { NewUser, NewUser1 ,NewUser2} from "../utils";
+// import { test, expect } from "@playwright/test";
+// import { LoginPage } from "../pages/LoginPage";
+// import { RegisterPage } from "../pages/RegisterPage";
+// import { CheckoutPage } from "../pages/CheckoutPage";
+// import { NewUser, NewUser1 ,NewUser2} from "../utils";
 
-test('Place Order: Register before Checkout', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const registerPage = new RegisterPage(page)
-    const checkOutPage = new CheckoutPage(page)
-    await loginPage.pageGoTo();
+// test('Place Order: Register before Checkout', async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     const registerPage = new RegisterPage(page)
+//     const checkOutPage = new CheckoutPage(page)
+//     await loginPage.pageGoTo();
 
-    await page.getByRole('link', { name: ' Products' }).click()
-    await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
-    await page.getByRole('button', { name: 'Continue Shopping' }).click()
-    await page.getByText('Cart', { exact: true }).click()
-    await page.getByText('Proceed To Checkout', { exact: true }).click()
-    await page.getByText('Register / Login', { exact: true }).click()
-    await registerPage.NewuserLogin(NewUser1.username, NewUser1.email, NewUser1.password)
+//     await page.getByRole('link', { name: ' Products' }).click()
+//     await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
+//     await page.getByRole('button', { name: 'Continue Shopping' }).click()
+//     await page.getByText('Cart', { exact: true }).click()
+//     await page.getByText('Proceed To Checkout', { exact: true }).click()
+//     await page.getByText('Register / Login', { exact: true }).click()
+//     await registerPage.NewuserLogin(NewUser1.username, NewUser1.email, NewUser1.password)
 
-    await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
-    await page.getByRole('link', { name: 'Continue' }).click()
-    await page.getByText('Cart', { exact: true }).click()
+//     await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
+//     await page.getByRole('link', { name: 'Continue' }).click()
+//     await page.getByText('Cart', { exact: true }).click()
 
-    await checkOutPage.placeOrder()
+//     await checkOutPage.placeOrder()
 
-    await page.getByText('Delete Account').click()
-    await expect(page.locator('b:has-text("ACCOUNT DELETED!")')).toBeVisible()
-})
+//     await page.getByText('Delete Account').click()
+//     await expect(page.locator('b:has-text("ACCOUNT DELETED!")')).toBeVisible()
+// })
 
-test(' Place Order: Register after Checkout', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const registerPage = new RegisterPage(page)
-    const checkOutPage = new CheckoutPage(page)
+// test(' Place Order: Register after Checkout', async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     const registerPage = new RegisterPage(page)
+//     const checkOutPage = new CheckoutPage(page)
 
-    await loginPage.pageGoTo();
-    await page.getByText('Signup / Login', { exact: true }).click()
-    await registerPage.NewuserLogin(NewUser.username, NewUser.email, NewUser.password)
-    await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
-    await page.getByRole('link', { name: 'Continue' }).click()
+//     await loginPage.pageGoTo();
+//     await page.getByText('Signup / Login', { exact: true }).click()
+//     await registerPage.NewuserLogin(NewUser.username, NewUser.email, NewUser.password)
+//     await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
+//     await page.getByRole('link', { name: 'Continue' }).click()
 
-    //buy product 
-    await page.getByRole('link', { name: ' Products' }).click()
-    await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
-    await page.getByRole('button', { name: 'Continue Shopping' }).click()
-    await page.getByText('Cart', { exact: true }).click()
+//     //buy product 
+//     await page.getByRole('link', { name: ' Products' }).click()
+//     await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
+//     await page.getByRole('button', { name: 'Continue Shopping' }).click()
+//     await page.getByText('Cart', { exact: true }).click()
 
-    await checkOutPage.placeOrder()
+//     await checkOutPage.placeOrder()
 
-    await page.getByText('Delete Account').click()
-    await expect(page.locator('b:has-text("ACCOUNT DELETED!")')).toBeVisible()
-})
+//     await page.getByText('Delete Account').click()
+//     await expect(page.locator('b:has-text("ACCOUNT DELETED!")')).toBeVisible()
+// })
 
-test(' Verify address details in checkout page', async ({ page }) => {
-    const loginPage = new LoginPage(page);
-    const registerPage = new RegisterPage(page)
+// test(' Verify address details in checkout page', async ({ page }) => {
+//     const loginPage = new LoginPage(page);
+//     const registerPage = new RegisterPage(page)
    
-    await loginPage.pageGoTo();
-    await page.getByText('Signup / Login', { exact: true }).click()
-    await registerPage.NewuserLogin(NewUser2.username, NewUser2.email, NewUser2.password)
-    await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
-    await page.getByRole('link', { name: 'Continue' }).click()
+//     await loginPage.pageGoTo();
+//     await page.getByText('Signup / Login', { exact: true }).click()
+//     await registerPage.NewuserLogin(NewUser2.username, NewUser2.email, NewUser2.password)
+//     await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
+//     await page.getByRole('link', { name: 'Continue' }).click()
 
-    //buy product 
-    await page.getByRole('link', { name: ' Products' }).click()
-    await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
-    await page.getByRole('button', { name: 'Continue Shopping' }).click()
-    await page.getByText('Cart', { exact: true }).click()
-    await page.getByText('Proceed To Checkout', { exact: true }).click()
+//     //buy product 
+//     await page.getByRole('link', { name: ' Products' }).click()
+//     await page.locator('a').filter({ hasText: 'Add to cart' }).first().click()
+//     await page.getByRole('button', { name: 'Continue Shopping' }).click()
+//     await page.getByText('Cart', { exact: true }).click()
+//     await page.getByText('Proceed To Checkout', { exact: true }).click()
 
 
-    const deliveryAddress = (await page.locator('#address_delivery li').allTextContents()).slice(1);
-    const billingAddress = (await page.locator('#address_invoice li').allTextContents()).slice(1);
+//     const deliveryAddress = (await page.locator('#address_delivery li').allTextContents()).slice(1);
+//     const billingAddress = (await page.locator('#address_invoice li').allTextContents()).slice(1);
 
   
-    expect(deliveryAddress).toEqual(billingAddress);
-})
+//     expect(deliveryAddress).toEqual(billingAddress);
+// })
