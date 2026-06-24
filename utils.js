@@ -9,13 +9,19 @@ export const UserData = {
 }
 
 export const NewUser ={
-    "email": "Avishkar12349@gmail.com",
+    "email": "Avishkar11222551434911@gmail.com",
     "username": "abcdef12",
     "password": "Avishkar@1217"
 }
 
 export const NewUser1 ={
-    "email": "Avishkar123458@gmail.com",
+    "email": "Avishkar12345458@gmail.com",
+    "username": "abcdefg11",
+    "password": "Avishkar@12172"
+}
+
+export const NewUser2 ={
+    "email": "Avishkar123456598@gmail.com",
     "username": "abcdefg11",
     "password": "Avishkar@12172"
 }
