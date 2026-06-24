@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 import { LoginPage } from "../pages/LoginPage";
 import { RegisterPage } from "../pages/RegisterPage";
 import { CheckoutPage } from "../pages/CheckoutPage";
-import { NewUser } from "../utils";
+import { NewUser ,NewUser1 } from "../utils";
 
 test('Place Order: Register before Checkout', async ({ page }) => {
     const loginPage = new LoginPage(page);
@@ -16,7 +16,7 @@ test('Place Order: Register before Checkout', async ({ page }) => {
     await page.getByText('Cart', { exact: true }).click()
     await page.getByText('Proceed To Checkout', { exact: true }).click()
     await page.getByText('Register / Login', { exact: true }).click()
-    await registerPage.NewuserLogin(NewUser.username, NewUser.email, NewUser.password)
+    await registerPage.NewuserLogin(NewUser1.username, NewUser1.email, NewUser1.password)
     
     await expect(page.getByRole('heading', { name: 'Account Created!' })).toBeVisible()
     await page.getByRole('link', { name: 'Continue' }).click()

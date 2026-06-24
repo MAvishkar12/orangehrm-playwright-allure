@@ -2,16 +2,22 @@ export const URL = "https://opensource-demo.orangehrmlive.com/web/index.php/auth
 
 
 export const UserData = {
-
-    "email": "Admin123456@gmail.com",
-    "username": "Admin123",
-    "password": "Admin@123"
+  // login to user
+    "email": "abcd01234@gmail.com",
+    "username": "abcd",
+    "password": "abcd01234"
 }
 
 export const NewUser ={
-    "email": "Admin1234567@gmail.com",
-    "username": "Admin123",
-    "password": "Admin@123"
+    "email": "Avishkar12349@gmail.com",
+    "username": "abcdef12",
+    "password": "Avishkar@1217"
+}
+
+export const NewUser1 ={
+    "email": "Avishkar123458@gmail.com",
+    "username": "abcdefg11",
+    "password": "Avishkar@12172"
 }
 
 export const IncorrectNewUser ={

@@ -28,6 +28,7 @@ test('Verify Subscription in Cart page', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
     await page.getByRole('link', { name: ' Cart' }).click();
+    await page.waitForLoadState("domcontentloaded")
     await page.getByRole('textbox', { name: 'Your email address' }).fill('Admin123456@gmail.com');
     await page.locator('#subscribe').click();
     await expect(page.getByText('You have been successfully')).toBeVisible()
@@ -38,6 +39,7 @@ test(' Search Product', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
     await page.getByRole('link', { name: ' Products' }).click();
+    await page.waitForLoadState("domcontentloaded")
     await expect(page.getByRole('heading', { name: 'All Products' })).toBeVisible()
     const searchText = "blue"
     await page.getByRole('textbox', { name: 'Search Product' }).fill(searchText)

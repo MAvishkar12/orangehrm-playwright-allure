@@ -26,8 +26,8 @@ export class RegisterPage {
         this.signupEmail = page.locator("input[data-qa='signup-email']");
         this.signupBtn = page.getByRole('button', { name: 'Signup' });
 
-        this.titleMr = page.getByRole('radio', { name: 'Mr.' });
-        this.password = page.getByLabel('Password ');
+        this.titleMr = page.getByLabel('Mr.', { exact: true })
+        this.password =  page.getByRole('textbox', { name: 'Password *' })
 
         this.firstName = page.getByRole('textbox', { name: 'First name ' });
         this.lastName = page.getByRole('textbox', { name: 'Last name *' });

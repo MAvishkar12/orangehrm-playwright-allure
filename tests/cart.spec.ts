@@ -21,6 +21,7 @@ test(' Search Products and Verify Cart After Login', async ({ page }) => {
             .locator('a.add-to-cart')
             .first()
             .click();
+            await page.waitForLoadState("domcontentloaded")
         await page.getByText('Continue Shopping').click();
     }
     await page.getByText('Cart', { exact: true }).click()
