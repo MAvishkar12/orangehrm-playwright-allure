@@ -2,7 +2,7 @@ import { test, expect } from "@playwright/test";
 
 import { UserData ,IncorrectNewUser } from "../utils";
 import { LoginPage } from "../pages/LoginPage";
-test("Login User with correct email and password", async ({ page }) => {
+test.only("Login User with correct email and password", async ({ page }) => {
     const loginPage = new LoginPage(page);
 
     await loginPage.pageGoTo();
@@ -13,6 +13,9 @@ test("Login User with correct email and password", async ({ page }) => {
     );
     await expect(page.getByRole('link', { name: 'Logout' }))
         .toBeVisible()
+
+   await page.screenshot({path:'Scrrenshot/login.png',fullPage:true})
+
 })
 
 test('Login User with incorrect email and password', async ({ page }) => {
