@@ -2,34 +2,28 @@ import { test, expect } from "@playwright/test";
 
 import { UserData ,IncorrectNewUser } from "../utils";
 import { LoginPage } from "../pages/LoginPage";
-test.only("Login User with correct email and password", async ({ page }) => {
+
+test("Login User with correct email and password", async ({ page }) => {
     const loginPage = new LoginPage(page);
-
     await loginPage.pageGoTo();
-
     await loginPage.login(
         UserData.email,
         UserData.password
     );
     await expect(page.getByRole('link', { name: 'Logout' }))
         .toBeVisible()
-
    await page.screenshot({path:'Scrrenshot/login.png',fullPage:true})
-
 })
 
 test('Login User with incorrect email and password', async ({ page }) => {
     const loginPage = new LoginPage(page);
-
     await loginPage.pageGoTo();
-
     await loginPage.login(
         IncorrectNewUser.email,
         IncorrectNewUser.password
     );
     await expect(page.getByText('Your email or password is incorrect!')).toBeVisible()
     await page.waitForTimeout(3000)
-
 })
 
 test('Register User with existing email', async ({ page }) => {
