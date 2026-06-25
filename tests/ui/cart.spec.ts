@@ -1,6 +1,6 @@
 import { test, expect } from "@playwright/test";
-import { LoginPage } from "../pages/LoginPage";
-import { UserData } from "../utils";
+import { LoginPage } from "../../pages/LoginPage";
+import { UserData } from "../../utils";
 test(' Search Products and Verify Cart After Login', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
