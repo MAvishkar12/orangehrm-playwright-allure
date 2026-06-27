@@ -3,6 +3,7 @@ import { LoginPage } from "../../pages/LoginPage";
 test(' Remove Products From Cart', async ({ page }) => {
     const loginPage = new LoginPage(page);
     await loginPage.pageGoTo();
+    await page.waitForLoadState('domcontentloaded');
     await expect(page.getByText('Home')).toBeVisible()
     await page.getByText(' Products').click()
     await expect(page).toHaveURL(/products/)

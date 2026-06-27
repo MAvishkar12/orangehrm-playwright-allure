@@ -1,10 +1,9 @@
-import { test, expect } from "@playwright/test";
+import { test, expect } from "../../Fixture";
+import { UserData, IncorrectNewUser } from "../../utils";
 
-import { UserData ,IncorrectNewUser } from "../../utils";
-import { LoginPage } from "../../pages/LoginPage";
 
-test("Login User with correct email and password", async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test("Login User with correct email and password", async ({ page, loginPage }) => {
+
     await loginPage.pageGoTo();
     await loginPage.login(
         UserData.email,
@@ -12,11 +11,11 @@ test("Login User with correct email and password", async ({ page }) => {
     );
     await expect(page.getByRole('link', { name: 'Logout' }))
         .toBeVisible()
-   await page.screenshot({path:'Scrrenshot/login.png',fullPage:true})
+    await page.screenshot({ path: 'Scrrenshot/login.png', fullPage: true })
 })
 
-test('Login User with incorrect email and password', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test('Login User with incorrect email and password', async ({ page, loginPage }) => {
+
     await loginPage.pageGoTo();
     await loginPage.login(
         IncorrectNewUser.email,
@@ -26,8 +25,7 @@ test('Login User with incorrect email and password', async ({ page }) => {
     await page.waitForTimeout(3000)
 })
 
-test('Register User with existing email', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test('Register User with existing email', async ({ page, loginPage }) => {
     await loginPage.pageGoTo();
     await page.getByRole('link', { name: 'Signup / Login' }).click()
     await expect(page).toHaveURL(/login/)
@@ -38,8 +36,7 @@ test('Register User with existing email', async ({ page }) => {
 
 })
 
-test("Contact Us Form", async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test("Contact Us Form", async ({ page, loginPage }) => {
     await loginPage.pageGoTo();
     await page.getByText('Contact us').click()
     await expect(page).toHaveURL(/contact_us/)
@@ -58,8 +55,8 @@ test("Contact Us Form", async ({ page }) => {
     await page.locator('[name="submit"]').click();
 })
 
-test(' Logout User', async ({ page }) => {
-    const loginPage = new LoginPage(page);
+test(' Logout User', async ({ page, loginPage }) => {
+
 
     await loginPage.pageGoTo();
 
