@@ -1,6 +1,7 @@
 import { test, expect } from "../../Fixture";
 import { UserData, IncorrectNewUser } from "../../utils";
 
+// test.describe.configure({mode:'serial'})
 
 test("Login User with correct email and password", async ({ page, loginPage }) => {
 
@@ -55,7 +56,7 @@ test("Contact Us Form", async ({ page, loginPage }) => {
     await page.locator('[name="submit"]').click();
 })
 
-test(' Logout User', async ({ page, loginPage }) => {
+test.only(' Logout User', async ({ page, loginPage }) => {
 
 
     await loginPage.pageGoTo();
@@ -68,5 +69,6 @@ test(' Logout User', async ({ page, loginPage }) => {
         .toBeVisible()
     await page.locator('li:has-text("Logout")').click()
     await expect(page).toHaveURL(/login/)
+  
 })
 
