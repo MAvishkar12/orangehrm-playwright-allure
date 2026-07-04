@@ -56,7 +56,7 @@ test("Contact Us Form", async ({ page, loginPage }) => {
     await page.locator('[name="submit"]').click();
 })
 
-test.only(' Logout User', async ({ page, loginPage }) => {
+test(' Logout User', async ({ page, loginPage }) => {
 
 
     await loginPage.pageGoTo();
